@@ -27,6 +27,8 @@ public class AppTest {
 
         try {
             Properties properties = new Properties();
+            //Para autenticacao ssl
+            properties.put("mail.smtp.ssl.trust", "*");
             //Para autorizacao
             properties.put("mail.smtp.auth", "true");
             //Para seguranca
@@ -52,7 +54,7 @@ public class AppTest {
             Address[] toUser = InternetAddress.parse("belmiroyoung@gmail.com, bbmungoi@gmail.com");
             
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(userName));// Quem vai enviar o email
+            message.setFrom(new InternetAddress(userName, "Belmiro Teste Email"));// Quem vai enviar o email
             message.setRecipients(Message.RecipientType.TO, toUser);// Destino do email
             message.setSubject("Envio de Email com Java");// Assunto do email
             message.setText("Ola Belmiro, voce acabou de receber um email enviado por java");// o texto do email
