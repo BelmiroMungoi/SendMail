@@ -1,9 +1,14 @@
 package com.bbm.sendmail;
 
 import java.util.Properties;
+import javax.mail.Address;
 import javax.mail.Authenticator;
+import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import org.junit.Test;
 
 /**
@@ -42,6 +47,16 @@ public class AppTest {
                 }
 
             });
+            
+            // Pega os endereco de email que receberam os email
+            Address[] toUser = InternetAddress.parse("belmiroyoung@gmail.com, bbmungoi@gmail.com");
+            
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(userName));// Quem vai enviar o email
+            message.setRecipients(Message.RecipientType.TO, toUser);// Destino do email
+            message.setSubject("Envio de Email com Java");// Assunto do email
+            message.setText("Ola Belmiro, voce acabou de receber um email enviado por java");// o texto do email
+            Transport.send(message);// Faz o envio do email
         } catch (Exception e) {
             e.printStackTrace();
         }
