@@ -63,7 +63,7 @@ public class AppTest {
             e.printStackTrace();
         }
     }
-
+    @Test
     public void sendEmailHtml() {
 
         StringBuilder builderHtmlText = new StringBuilder();
@@ -72,7 +72,7 @@ public class AppTest {
         builderHtmlText.append("Voce acabou de receber um email java"
                 + " personalizado em Html<br/><br/>");
         builderHtmlText.append("Acesse o Link abaixo para poder vizualiazar o meu gitHub<br/><br/>");
-        builderHtmlText.append("<a target=\"_blank\" href=\"www.github.com\">Belmiro Mungoi</a>");
+        builderHtmlText.append("<a target=\"_blank\" href=\"https://github.com/BelmiroMungoi\">Belmiro Mungoi</a>");
 
         SendEmail sendEmail
                 = new SendEmail("belmiroyoung@gmail.com, bbmungoi@gmail.com",
@@ -80,6 +80,6 @@ public class AppTest {
                         builderHtmlText.toString(),
                         "Belmiro29");
 
-        sendEmail.sendEmail(true);
+        sendEmail.sendEmailAnexo(true);
     }
 }
