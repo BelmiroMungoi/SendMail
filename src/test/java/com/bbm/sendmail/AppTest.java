@@ -49,10 +49,10 @@ public class AppTest {
                 }
 
             });
-            
+
             // Pega os endereco de email que receberam os email
             Address[] toUser = InternetAddress.parse("belmiroyoung@gmail.com, bbmungoi@gmail.com");
-            
+
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(userName, "Belmiro Teste Email"));// Quem vai enviar o email
             message.setRecipients(Message.RecipientType.TO, toUser);// Destino do email
@@ -62,5 +62,24 @@ public class AppTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void sendEmailHtml() {
+
+        StringBuilder builderHtmlText = new StringBuilder();
+
+        builderHtmlText.append("<h2>Ola Belmiro</h2> <br/><br/>");
+        builderHtmlText.append("Voce acabou de receber um email java"
+                + " personalizado em Html<br/><br/>");
+        builderHtmlText.append("Acesse o Link abaixo para poder vizualiazar o meu gitHub<br/><br/>");
+        builderHtmlText.append("<a target=\"_blank\" href=\"www.github.com\">Belmiro Mungoi</a>");
+
+        SendEmail sendEmail
+                = new SendEmail("belmiroyoung@gmail.com, bbmungoi@gmail.com",
+                        "Testando Envio de Email Com Java",
+                        builderHtmlText.toString(),
+                        "Belmiro29");
+
+        sendEmail.sendEmail(true);
     }
 }
