@@ -30,7 +30,7 @@ public class SendEmail {
         this.name = name;
     }
 
-    public void sendEmail() {
+    public void sendEmail(boolean sendHtml) {
 
         try {
             Properties properties = new Properties();
@@ -57,7 +57,12 @@ public class SendEmail {
             message.setFrom(new InternetAddress(userName, name));
             message.setRecipients(Message.RecipientType.TO, toUser);
             message.setSubject(subject);
-            message.setText(content);
+
+            if (sendHtml) {
+                message.setContent(content, "text/html; charset=utf-8");
+            } else {
+                message.setText(content);
+            }
             Transport.send(message);
         } catch (Exception e) {
             e.printStackTrace();
